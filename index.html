@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <title>My Prayer Journal TIKA — Jurnal Sholat Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="dashboard"><span class="brand-mark">م</span><span>My Prayer<span class="brand-light">Journal</span></span></a>
+      <div class="side-caption">MENU UTAMA</div>
+      <nav class="nav-list" aria-label="Navigasi utama">
+        <button class="nav-link active" data-page="dashboard"><span>⌂</span> KALENDER SHOLAT TIKA</button>
+        <button class="nav-link" data-page="journal"><span>☑</span> Jurnal Sholat</button>
+        <button class="nav-link" data-page="sunnah"><span>✧</span> Sholat Sunnah</button>
+        <button class="nav-link" data-page="calendar"><span>▦</span> Kalender</button>
+        <button class="nav-link" data-page="statistics"><span>▥</span> Statistik</button>
+        <button class="nav-link" data-page="reflection"><span>✎</span> Refleksi</button>
+        <button class="nav-link" data-page="targets"><span>◎</span> Target Ibadah</button>
+        <button class="nav-link" data-page="reminders"><span>◷</span> Pengingat</button>
+        <button class="nav-link" data-page="reports"><span>▤</span> Rekap Laporan</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-quote">“Sesungguhnya sholat itu mencegah dari perbuatan keji dan mungkar.”<small>QS. Al-'Ankabut: 45</small></div>
+        <div class="side-footer">My Prayer Journal · v1.0</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Buka menu">☰</button>
+        <div><div class="eyebrow" id="pageEyebrow">RUANG IBADAH HARIAN</div><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="today-chip" id="headerDate"></span><button class="avatar" title="Pengguna">U</button></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-banner">
+          <div><span class="welcome-tag">ASSALAMUALAIKUM, SELAMAT DATANG DI WEB RAHMATIKA 👋</span><h2>Mulai hari dengan niat yang baik.</h2><p>Setiap langkah kecil menuju istiqamah adalah kemajuan.</p><div class="banner-date" id="dashboardDate"></div></div>
+          <div class="banner-art" aria-hidden="true">☾<span>✦</span></div>
+        </div>
+        <div class="section-heading"><div><h2>Ringkasan hari ini</h2><p>Pantau perjalanan ibadahmu hari ini.</p></div><button class="btn btn-primary" data-goto="journal">+ Catat sholat</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">☑</div><div class="stat-label">Sholat wajib</div><div class="stat-value" id="dashObligatory">0<span>/5</span></div><div class="stat-note">Sudah dilaksanakan</div></article>
+          <article class="stat-card"><div class="stat-icon violet">✧</div><div class="stat-label">Sholat sunnah</div><div class="stat-value" id="dashSunnah">0</div><div class="stat-note">Ibadah sunnah hari ini</div></article>
+          <article class="stat-card"><div class="stat-icon green">◎</div><div class="stat-label">Pencapaian harian</div><div class="stat-value" id="dashPercent">0%</div><div class="stat-note">Dari 5 sholat wajib</div></article>
+          <article class="stat-card"><div class="stat-icon amber">⌖</div><div class="stat-label">Tepat waktu</div><div class="stat-value" id="dashOnTime">0</div><div class="stat-note">Sholat wajib</div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-heading"><div><h3>Perkembangan 7 hari</h3><p>Persentase sholat wajib</p></div><span class="soft-label">Mingguan</span></div><div class="chart-wrap"><canvas id="dashboardChart"></canvas></div></article>
+          <article class="panel progress-panel"><div class="panel-heading"><div><h3>Target harian</h3><p>Langkah kecil, konsisten setiap hari</p></div></div><div class="big-progress" id="dashProgressRing"><strong id="dashTargetPercent">0%</strong><span>tercapai</span></div><div id="dashTargetList" class="target-mini-list"></div><button class="btn btn-outline full" data-goto="targets">Atur target</button></article>
+        </div>
+        <div class="content-grid lower-grid">
+          <article class="panel verse-card"><div class="panel-heading"><div><span class="eyebrow">PENGINGAT HARI INI</span><h3>Ayat pilihan</h3></div><span class="verse-symbol">۞</span></div><p class="arabic">إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ</p><p class="translation">“Sesungguhnya sholat itu mencegah dari (perbuatan) keji dan mungkar.”</p><small>QS. Al-'Ankabut: 45</small></article>
+          <article class="panel"><div class="panel-heading"><div><h3>Aktivitas hari ini</h3><p>Catatan singkat jurnalmu</p></div><button class="text-button" data-goto="journal">Lihat jurnal →</button></div><div id="dashActivity" class="activity-list"></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-journal">
+        <div class="section-heading"><div><h2>Jurnal sholat harian</h2><p>Catat lima waktu sholat dan evaluasi pelaksanaannya.</p></div><input type="date" id="journalDate" class="date-input"></div>
+        <div class="panel"><div class="panel-heading"><div><h3>Sholat wajib</h3><p>Perbarui status sesuai pelaksanaanmu.</p></div><span class="soft-label" id="journalCount">0 dari 5 selesai</span></div><div id="obligatoryList" class="prayer-list"></div><div class="form-actions"><button class="btn btn-primary" id="saveJournal">Simpan jurnal</button><span class="save-hint" id="journalSaveHint">Perubahan disimpan otomatis di browser.</span></div></div>
+      </section>
+
+      <section class="page" id="page-sunnah">
+        <div class="section-heading"><div><h2>Jurnal sholat sunnah</h2><p>Dokumentasikan ibadah sunnah yang kamu kerjakan.</p></div><input type="date" id="sunnahDate" class="date-input"></div>
+        <div class="panel"><div class="panel-heading"><div><h3>Daftar sholat sunnah</h3><p>Pilih yang telah dilaksanakan dan catat waktunya.</p></div></div><div id="sunnahList" class="prayer-list"></div><div class="form-actions"><button class="btn btn-primary" id="saveSunnah">Simpan jurnal sunnah</button><span class="save-hint" id="sunnahSaveHint"></span></div></div>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <div class="section-heading"><div><h2>Kalender jurnal</h2><p>Pilih tanggal untuk melihat ringkasan ibadah.</p></div></div>
+        <div class="calendar-layout"><article class="panel"><div class="calendar-head"><button class="icon-btn" id="prevMonth" aria-label="Bulan sebelumnya">‹</button><h3 id="calendarMonth"></h3><button class="icon-btn" id="nextMonth" aria-label="Bulan berikutnya">›</button></div><div class="calendar-grid weekdays"><span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span></div><div class="calendar-grid" id="calendarDays"></div><div class="calendar-legend"><span><i class="legend-dot done"></i> Ada jurnal</span><span><i class="legend-dot today"></i> Hari ini</span></div></article><article class="panel selected-day"><div class="panel-heading"><div><h3 id="selectedDateTitle">Ringkasan tanggal</h3><p>Detail ibadah pada tanggal terpilih</p></div></div><div id="calendarSummary" class="calendar-summary"></div><button class="btn btn-outline full" id="openSelectedJournal">Buka jurnal tanggal ini</button></article></div>
+      </section>
+
+      <section class="page" id="page-statistics">
+        <div class="section-heading"><div><h2>Statistik ibadah</h2><p>Perkembangan berdasarkan jurnal yang tersimpan.</p></div><select id="statsPeriod" class="date-input"><option value="7">7 hari terakhir</option><option value="30">30 hari terakhir</option><option value="90">90 hari terakhir</option></select></div>
+        <div class="stats-grid"><article class="stat-card"><div class="stat-label">Total sholat wajib</div><div class="stat-value" id="statTotal">0</div><div class="stat-note">Dalam periode terpilih</div></article><article class="stat-card"><div class="stat-label">Tepat waktu</div><div class="stat-value" id="statOnTime">0</div><div class="stat-note">Sholat wajib</div></article><article class="stat-card"><div class="stat-label">Terlambat</div><div class="stat-value" id="statLate">0</div><div class="stat-note">Sholat wajib</div></article><article class="stat-card"><div class="stat-label">Sholat sunnah</div><div class="stat-value" id="statSunnah">0</div><div class="stat-note">Dalam periode terpilih</div></article></div>
+        <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>Tren pelaksanaan</h3><p>Jumlah sholat wajib per hari</p></div></div><div class="chart-wrap tall"><canvas id="trendChart"></canvas></div></article><article class="panel"><div class="panel-heading"><div><h3>Status sholat</h3><p>Perbandingan tepat waktu dan terlambat</p></div></div><div class="chart-wrap tall"><canvas id="statusChart"></canvas></div></article></div>
+      </section>
+
+      <section class="page" id="page-reflection">
+        <div class="section-heading"><div><h2>Catatan & refleksi</h2><p>Luangkan waktu untuk mengevaluasi perjalanan ibadahmu.</p></div></div>
+        <div class="panel"><form id="reflectionForm"><input type="hidden" id="reflectionId"><label for="reflectionDate">Tanggal</label><input type="date" id="reflectionDate" class="field" required><label for="reflectionTitle">Judul refleksi</label><input id="reflectionTitle" class="field" maxlength="90" placeholder="Contoh: Belajar lebih disiplin" required><label for="reflectionText">Catatan dan evaluasi</label><textarea id="reflectionText" class="field textarea" rows="5" placeholder="Tuliskan pengalaman, rasa syukur, atau hal yang ingin diperbaiki..." required></textarea><div class="form-actions"><button class="btn btn-primary" type="submit" id="reflectionSubmit">Simpan refleksi</button><button class="btn btn-light" type="button" id="cancelReflection" hidden>Batal edit</button></div></form></div><div class="section-heading compact"><div><h2>Riwayat refleksi</h2><p>Catatan yang pernah kamu tulis.</p></div></div><div id="reflectionHistory" class="reflection-grid"></div>
+      </section>
+
+      <section class="page" id="page-targets">
+        <div class="section-heading"><div><h2>Target ibadah harian</h2><p>Tentukan kebiasaan yang ingin kamu jaga setiap hari.</p></div></div>
+        <div class="panel"><div class="panel-heading"><div><h3>Pengaturan target</h3><p>Centang target yang ingin dimasukkan ke perhitungan progres.</p></div></div><div id="targetSettings" class="target-settings"></div><div class="form-actions"><button class="btn btn-primary" id="saveTargets">Simpan target</button></div></div><div class="panel target-overview"><div class="panel-heading"><div><h3>Progres hari ini</h3><p>Pencapaian target berdasarkan jurnal hari ini.</p></div><strong id="targetProgressText">0%</strong></div><div class="progress-track"><div id="targetProgressBar" class="progress-fill"></div></div><div id="targetProgressDetails" class="target-progress-details"></div></div>
+      </section>
+
+      <section class="page" id="page-reminders">
+        <div class="section-heading"><div><h2>Pengingat waktu sholat</h2><p>Atur jadwal secara manual dan izinkan notifikasi browser.</p></div></div>
+        <div class="notice"><strong>Catatan:</strong> Pengingat berjalan saat halaman website terbuka. Browser atau sistem operasi dapat membatasi notifikasi; pengingat tidak dijamin berjalan ketika browser ditutup.</div>
+        <div class="panel"><div class="panel-heading"><div><h3>Jadwal pengingat</h3><p>Masukkan waktu lokal untuk setiap sholat.</p></div><button class="btn btn-outline" id="notificationPermission">Izinkan notifikasi</button></div><div id="reminderList" class="reminder-list"></div><div class="form-actions"><button class="btn btn-primary" id="saveReminders">Simpan pengaturan</button><span id="notificationStatus" class="save-hint">Notifikasi belum diaktifkan.</span></div></div>
+      </section>
+
+      <section class="page" id="page-reports">
+        <div class="section-heading"><div><h2>Rekap laporan</h2><p>Ringkasan pencatatan ibadah yang bisa dicetak.</p></div><div class="form-actions"><button class="btn btn-outline" id="exportData">Ekspor JSON ↓</button><label class="btn btn-outline file-import-label">Impor JSON ↑<input type="file" id="importData" accept="application/json,.json" hidden></label><button class="btn btn-primary" id="printReport">Cetak laporan ⎙</button></div></div>
+        <div class="panel"><div class="report-controls"><label>Mulai <input type="date" id="reportStart" class="date-input"></label><label>Sampai <input type="date" id="reportEnd" class="date-input"></label><button class="btn btn-outline" id="generateReport">Tampilkan rekap</button></div><div id="reportContent" class="report-content"></div></div>
+      </section>
+
+      <footer class="main-footer">Dibuat untuk menemani ikhtiar menuju istiqamah. <span>My Prayer Journal</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/journal.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/reflection.js"></script>
+  <script src="js/reminder.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
